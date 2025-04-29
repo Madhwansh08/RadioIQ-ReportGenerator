@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pydicom
+numpy
+Pillow
+reportlab
+python-multipart
