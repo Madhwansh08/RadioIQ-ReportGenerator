@@ -282,4 +282,15 @@ async def create_report(
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    # Read port & host from env (Render populates $PORT)
+    port = int(os.getenv('PORT', 8000))
+    host = os.getenv('HOST', '0.0.0.0')
+    # If you want live‐reload in dev only:
+    reload_flag = os.getenv('DEV', 'false').lower() in ('1','true','yes')
+
+    uvicorn.run(
+        "main:app",      # module:path
+        host=host,
+        port=port,
+        reload=reload_flag  # set DEV=true locally to auto‐reload
+    )
